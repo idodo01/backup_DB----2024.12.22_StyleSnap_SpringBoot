@@ -7,18 +7,12 @@ CREATE OR REPLACE
     SQL SECURITY DEFINER
 VIEW `select_carts_by_user_view` AS
 	SELECT
-	 `c`.`user_id`,
-     `c`.`no` AS `cart_no`,
-     `c`.`amount` AS `cart_amount`,
      `p`.`no` AS `product_no`,
      `p`.`name` AS `product_name`,
      `p`.`price` AS `product_price`,
      `pi`.`no` AS `product_image_no`
 FROM
-	((
-    `cart` `c`
-    JOIN `product` `p` ON ((`c`.`product_no` = `p`.`no`))
-    )
+	(
+    `product` `p` 
     JOIN `product_image` `pi` ON ((`p`.`no` = `pi`.`product_no`)) 			
     )
-    
